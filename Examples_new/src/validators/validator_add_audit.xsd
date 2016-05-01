@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--W3C Schema-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmptyIP">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="addRemLength">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="6"/>
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="notEmptySDId">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="notEmptyLRTAssociationID">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddLRTFile1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationCode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0"/>
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmptySDId" nillable="false" minOccurs="1"/>
+							<xs:element name="ipAddress" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="removeE164s">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lineNumber" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lrtAssociationId" type="notEmptyLRTAssociationID" nillable="false"/>
+	<xs:element name="lrtAssociation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lrtAssociationId"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1" minOccurs="1"/>
+				<xs:element ref="sd2" minOccurs="0"/>
+				<xs:element ref="serviceOperationCode" minOccurs="0"/>
+				<xs:element ref="inEffect"/>
+				<xs:element ref="ccmeIpCurrent" minOccurs="0"/>
+				<xs:element ref="ccmeIpNew" minOccurs="0"/>
+				<xs:element ref="addE164s" minOccurs="0"/>
+				<xs:element ref="removeE164s" minOccurs="0"/>
+				<xs:element name="SDHANode" type="xs:anyType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lrtAssociation"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lineNumber">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lineNumb" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lineNumb" type="addRemLength"/>
+	<xs:element name="inEffect" type="xs:boolean"/>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ccmeIpNew" type="notEmptyIP" nillable="false"/>
+	<xs:element name="ccmeIpCurrent" type="notEmptyIP" nillable="false"/>
+	<xs:element name="addE164s">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lineNumber" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

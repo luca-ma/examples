@@ -1,0 +1,42 @@
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-04-29 20:38:34.526
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-04-29 20:38:34.807
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-04-29 21:07:36.565
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-04-29 21:07:37.655
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-04-29 21:07:43.316
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-04-29 21:08:17.853
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-04-29 21:08:18.198
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-04-29 21:09:45.156
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-04-29 21:09:46.263
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-04-29 21:09:51.816
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-04-29 21:10:40.938
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-04-29 21:10:59.392
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-04-29 21:11:00.529
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-04-29 21:11:06.127
+!MESSAGE Server Startup Succeeded

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Gj.D-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="numbers9">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="allowZero">
+		<xs:restriction base="xs:unsignedShort">
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="numer0to10">
+		<xs:restriction base="xs:unsignedShort">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="10"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="notKnownPort">
+		<xs:restriction base="xs:unsignedShort">
+			<xs:minInclusive value="1025"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enablingState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="charging">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="pass"/>
+			<xs:enumeration value="delete"/>
+			<xs:enumeration value="insert"/>
+			<xs:enumeration value="none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="sip-ports">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sip-port" maxOccurs="unbounded" nillable ="false">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="address" type="notEmpty"/>
+							<xs:element name="port" type="notKnownPort"/>
+							<xs:element name="transport-protocol" type="xs:string" minOccurs="0"/>
+							<xs:element name="tls-profile" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="allow-anonymous" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="all"/>
+										<xs:enumeration value="agents-only"/>
+										<xs:enumeration value="realm-prefix"/>
+										<xs:enumeration value="registered"/>
+										<xs:enumeration value="register-prefix"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty" nillable="false" />
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0" />
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sipIF">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="sipIFId" type="notEmpty"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1" />
+				<xs:element ref="sd2" minOccurs="0"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="serviceOperationcode"/>
+				<xs:element name="inEffect" type="xs:boolean"/>
+				<xs:element name="activateConfig" type="xs:boolean"/>
+				<xs:element name="state" type="enablingState"/>
+				<xs:element name="realm-id" type="xs:string"/>
+				<xs:element ref="sip-ports"/>
+				<xs:element name="carriers" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="value" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="proxy-mode" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="proxy"/>
+							<xs:enumeration value="Proxy"/>
+							<xs:enumeration value="redirect"/>
+							<xs:enumeration value="record-route"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="redirect-action" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="proxy"/>
+							<xs:enumeration value="recurse"/>
+							<xs:enumeration value=""/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="contact-mode" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="none"/>
+							<xs:enumeration value="maddr"/>
+							<xs:enumeration value="strict"/>
+							<xs:enumeration value="loose"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="nat-traversal" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="none"/>
+							<xs:enumeration value="always"/>
+							<xs:enumeration value="rport"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="tcp-nat-interval" type="numbers9" minOccurs="0"/>
+				<xs:element name="nat-interval" type="numbers9" minOccurs="0"/>
+				<xs:element name="registration-caching" type="enablingState" minOccurs="0"/>
+				<xs:element name="min-reg-expire" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="numbers9">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="registration-interval" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="numbers9">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="route-to-registrar" type="enablingState" minOccurs="0"/>
+				<xs:element name="teluri-scheme" type="enablingState" minOccurs="0"/>
+				<xs:element name="uri-fqdn-domain" type="xs:string" minOccurs="0"/>
+				<xs:element name="option" type="xs:string" minOccurs="0"/>
+				<xs:element name="trust-mode" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="all"/>
+							<xs:enumeration value="agents-only"/>
+							<xs:enumeration value="realm-prefix"/>
+							<xs:enumeration value="registered"/>
+							<xs:enumeration value="none"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="stop-recurse" minOccurs="0"/>
+				<xs:element name="sip-dynamic-hnt" type="enablingState" minOccurs="0"/>
+				<xs:element name="max-nat-interval" type="numbers9" minOccurs="0"/>
+				<xs:element name="nat-int-increment" type="numbers9" minOccurs="0"/>
+				<xs:element name="nat-test-increment" type="numbers9" minOccurs="0"/>
+				<xs:element name="port-map-start" minOccurs="0">
+					<xs:simpleType>
+						<xs:union memberTypes="notKnownPort allowZero"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="port-map-end" minOccurs="0">
+					<xs:simpleType>
+						<xs:union memberTypes="notKnownPort allowZero"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="in-manipulationid" type="xs:string" minOccurs="0"/>
+				<xs:element name="out-manipulationid" type="xs:string" minOccurs="0"/>
+				<xs:element name="sip-ims-feature" type="enablingState" minOccurs="0"/>
+				<xs:element name="operator-identifier" type="xs:string" minOccurs="0"/>
+				<xs:element name="anonymous-priority" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="none"/>
+							<xs:enumeration value="normal"/>
+							<xs:enumeration value="non-urgent"/>
+							<xs:enumeration value="emergency"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="network-id" type="xs:string" minOccurs="0"/>
+				<xs:element name="ext-policy-server" type="xs:string" minOccurs="0"/>
+				<xs:element name="default-location-string" type="xs:string" minOccurs="0"/>
+				<xs:element name="term-tgrp-mode" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="none"/>
+							<xs:enumeration value="iptel"/>
+							<xs:enumeration value="gress-uri"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="charging-vector-mode" type="charging" minOccurs="0"/>
+				<xs:element name="charging-function-address-mode" type="charging" minOccurs="0"/>
+				<xs:element name="ccf-address" type="xs:string" minOccurs="0"/>
+				<xs:element name="ecf-address" type="xs:string" minOccurs="0"/>
+				<xs:element name="secured-network" type="enablingState" minOccurs="0"/>
+				<xs:element name="max-incoming-conns" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedInt">
+							<xs:maxInclusive value="40000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="per-scr-ip-max-incoming-conns" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedInt">
+							<xs:maxInclusive value="40000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="inactive-conn-timeout" type="numbers9" minOccurs="0"/>
+				<xs:element name="implicit-service-route" type="enablingState" minOccurs="0"/>
+				<xs:element name="rfc2833-payload" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:byte">
+							<xs:minInclusive value="96"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="rfc2833-mode" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="transparent"/>
+							<xs:enumeration value="preferred"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="checkOnDb" type="xs:string"/>
+				<xs:element name="itemExistsOnDb" type="xs:boolean"/>
+				<xs:element ref="sdhanodes" />
+				<xs:element name="trans-expire" minOccurs="0">
+					<xs:simpleType>
+						<xs:union memberTypes="numbers9 allowZero"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="invite-expire" minOccurs="0">
+					<xs:simpleType>
+						<xs:union memberTypes="numbers9 allowZero"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="max-redirect-contacts" type="numer0to10" minOccurs="0"/>
+				<xs:element name="constraint-name" type="xs:string" minOccurs="0"/>
+				<xs:element name="response-map" type="xs:string" minOccurs="0"/>
+				<xs:element name="local-response-map" type="xs:string" minOccurs="0"/>
+				<xs:element name="enforcement-profile" type="xs:string" minOccurs="0"/>
+				<xs:element name="tcp-keepalive" type="xs:string" minOccurs="0"/>
+				<xs:element name="add-sdp-invite" type="enablingState" minOccurs="0"/>
+				<xs:element name="add-sdp-profiles" type="xs:string" nillable="true" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sipIF"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddSipIF1"/>
+				<xs:enumeration value="taddSipIFInterct1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationcode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddSipIF1"/>
+				<xs:enumeration value="taddSipIFInterct1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="value">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

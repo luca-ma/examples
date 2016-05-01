@@ -1,0 +1,287 @@
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-02-28 18:00:33.057
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-02-28 18:00:39.841
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-02-28 18:01:02.758
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-02-28 18:02:31.455
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842785 2015-02-28 18:02:52.975
+!MESSAGE Server Shutdown Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-02-28 18:03:30.541
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-02-28 18:03:31.642
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-02-28 18:03:37.486
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2015-02-28 18:05:37.918
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\classes. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\classes\it. May be locked by another process.
+!SUBENTRY 5 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\classes\it\ex. May be locked by another process.
+!SUBENTRY 6 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\classes\it\ex. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\HelloService. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\HelloService\it. May be locked by another process.
+!SUBENTRY 5 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:37.918
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\HelloService\it. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2015-02-28 18:05:42.387
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.397
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.397
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.397
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.397
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes\it. May be locked by another process.
+!SUBENTRY 5 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.397
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes\it\ex. May be locked by another process.
+!SUBENTRY 6 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.397
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes\it\ex. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2015-02-28 18:05:42.407
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.407
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.407
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.407
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\classes. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.407
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\classes\it. May be locked by another process.
+!SUBENTRY 5 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.407
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\classes\it. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.407
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\HelloService. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:05:42.407
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF\HelloService. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-02-28 18:05:59.942
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 16842768 2015-02-28 18:06:01.459
+!MESSAGE Poll Thread Aborted: null
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-02-28 18:06:01.509
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-02-28 18:06:01.649
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-02-28 18:06:02.753
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-02-28 18:06:09.593
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2015-02-28 18:33:51.458
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.458
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.458
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.458
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.458
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes\it. May be locked by another process.
+!SUBENTRY 5 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.458
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes\it. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2015-02-28 18:33:51.468
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.468
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.468
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:33:51.468
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war\WEB-INF. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2015-02-28 18:34:08.477
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:34:08.477
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:34:08.477
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:34:08.477
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:34:08.477
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWsClient.war\WEB-INF\classes. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2015-02-28 18:34:08.487
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:34:08.487
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2015-02-28 18:34:08.487
+!MESSAGE Could not delete D:\luca\wildfly\wildfly-8.1.0.Final\standalone\deployments\HelloWs.war. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-02-28 18:34:19.344
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-02-28 18:34:19.709
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-02-28 20:00:42.200
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-02-28 20:00:43.300
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-02-28 20:01:18.102
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-02-28 20:07:05.181
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-02-28 20:07:05.806
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-02-28 20:07:05.862
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-02-28 20:07:06.944
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-02-28 20:07:11.988
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 11:19:36.017
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 11:19:42.242
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 11:20:08.465
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-03-01 11:56:21.875
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 16842768 2015-03-01 11:56:22.590
+!MESSAGE Poll Thread Aborted: null
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-03-01 11:56:22.590
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 11:56:22.660
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 11:56:23.739
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 11:56:29.447
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-03-01 15:19:19.694
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-03-01 15:19:19.773
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 15:20:05.203
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 15:20:06.950
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 15:20:11.728
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-03-01 15:50:54.376
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-03-01 15:50:54.988
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 15:52:43.893
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 15:52:44.994
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 15:52:49.772
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-03-01 16:30:17.323
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-03-01 16:30:17.515
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 16:30:17.550
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 16:30:18.633
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 16:30:24.350
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-03-01 16:33:29.954
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-03-01 16:33:30.203
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 16:52:48.007
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 16:53:17.747
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 16:53:18.807
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 16:53:23.588
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-03-01 18:34:57.219
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-03-01 18:34:57.397
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 18:34:57.420
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 18:34:58.488
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 18:35:04.192
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2015-03-01 19:52:24.123
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2015-03-01 19:52:24.783
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-03-01 19:52:24.800
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre7 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-03-01 19:52:25.954
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-03-01 19:52:34.880
+!MESSAGE Server Startup Succeeded

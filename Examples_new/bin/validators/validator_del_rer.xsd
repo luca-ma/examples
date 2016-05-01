@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited by Guido Scollo (DevoTeam Ausystems) -->
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="lrtAssociation">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="lrtAssociationId"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="sd2"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="serviceOperationCode"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="inEffect"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="ccmeIpCurrent"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="ccmeIpNew"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="addE164s"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="removeE164s"/>
+				<xs:element ref="sdhanodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lrtAssociationId" type="notEmpty" nillable="false"/>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lrtAssociation"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tdelLRTRER1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty" minOccurs="0"/>
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty"/>
+							<xs:element name="ipAddress" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="serviceOperationCode">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="inEffect" type="xs:boolean"/>
+	<xs:element name="ccmeIpCurrent" type="notEmpty" nillable="false"/>
+	<xs:element name="ccmeIpNew" type="xs:string" nillable="true"/>
+	<xs:element name="addE164s">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="removeE164s">
+		<xs:complexType/>
+	</xs:element>
+</xs:schema>

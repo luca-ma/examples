@@ -1,0 +1,76 @@
+<project name="example_prj" default="jarLdap">
+   
+	
+	<target name="clean">
+        <delete dir="build"/>
+        <delete dir="dist"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"  encoding="ISO-8859-1"/>
+    </target>
+    
+    <target name="compileLdap" depends ="clean">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src/ldap" destdir="build/classes"  encoding="ISO-8859-1"/>
+    </target>
+	
+	 <target name="compileLdapJDK1.6" depends ="clean">
+	        <mkdir dir="build/classes"/>
+	        <javac  source="1.6"
+	            target="1.6" executable="${javac1.6}" srcdir="src/ldap" destdir="build/classes"  encoding="ISO-8859-1"/> 	
+	</target>
+
+    <target name="jar" depends ="compile,clean" >
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/Example.jar" basedir="build/classes">
+        </jar>
+    </target>
+	    
+    <target name="jarLdap" depends ="compileLdap" >
+        <mkdir dir="build/jar"/>
+    	<mkdir dir="build/classes"/>
+    	
+    	<manifest file="build/MANIFEST.MF">
+    	  <attribute name="Main-Class"
+    	             value="ldap.LDapConn" />
+    	</manifest>
+    	
+    	<jar  destfile="build/jar/connLdap.jar"  manifest="build/MANIFEST.MF"  mergeClassPathAttributes="true" >
+    		  <fileset dir="build/classes" />
+        </jar>
+    	
+    </target>
+	
+	 <target name="jarLdapJDK1.6" depends ="compileLdapJDK1.6" >
+	        <mkdir dir="build/jar"/>
+	    	<mkdir dir="build/classes"/>
+	    	
+	    	<manifest file="build/MANIFEST.MF">
+	    	  <attribute name="Main-Class"
+	    	             value="ldap.LDapConn" />
+	    	</manifest>
+	    	
+	    	<jar  destfile="build/jar/connLdap.jar"  manifest="build/MANIFEST.MF"  mergeClassPathAttributes="true" >
+	    		  <fileset dir="build/classes" />
+	        </jar>
+	    	
+	    </target>
+				
+    <target name="zipLdap" depends ="jarLdap" >
+    	<mkdir dir="dist"/>
+     	<zip destfile="dist/connLdap.zip">
+   			<zipfileset dir="build/jar/" includes="connLdap.jar" />
+    		<zipfileset dir="." includes="ldapconn.properties"/>
+		 </zip>
+    </target>
+	
+	 <target name="zipLdapJDK1.6" depends ="jarLdapJDK1.6" >
+	    	<mkdir dir="dist"/>
+	     	<zip destfile="dist/connLdap.zip">
+	   			<zipfileset dir="build/jar/" includes="connLdap.jar" />
+	    		<zipfileset dir="." includes="ldapconn.properties"/>
+			 </zip>
+	    </target>
+</project>

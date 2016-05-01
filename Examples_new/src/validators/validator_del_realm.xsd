@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Gj.D-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="minOneLength">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="numbers9">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enablingState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="levels">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="low"/>
+			<xs:enumeration value="medium"/>
+			<xs:enumeration value="high"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="allows">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="both"/>
+			<xs:enumeration value="riverse"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="latchings">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="sdp"/>
+			<xs:enumeration value="peer-ip"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cac-mode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="AOR"/>
+			<xs:enumeration value="IP"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SD">
+		<xs:sequence>
+			<xs:element name="SdType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="id" type="xs:string"/>
+						<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="realm">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="realmId" type="notEmpty"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element name="sd1" type="SD"/>
+				<xs:element name="sd2" type="SD" minOccurs="0"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="serviceOperationCode" minOccurs="0"/>
+				<xs:element name="inEffect" type="xs:boolean"/>
+				<xs:element name="activateConfig" type="xs:boolean" minOccurs="0"/>
+				<xs:element name="identifier" type="notEmpty"/>
+				<xs:element name="addr-prefix" type="xs:string" minOccurs="0"/>
+				<xs:element ref="network-interfaces" minOccurs="0"/>
+				<xs:element name="mm-in-realm" type="enablingState" minOccurs="0"/>
+				<xs:element name="mm-in-network" type="enablingState" minOccurs="0"/>
+				<xs:element name="mm-same-ip" type="enablingState" minOccurs="0"/>
+				<xs:element name="mm-in-system" type="enablingState" minOccurs="0"/>
+				<xs:element name="bw-cac-non-mm" type="enablingState" minOccurs="0"/>
+				<xs:element name="msm-release" type="enablingState" minOccurs="0"/>
+				<xs:element name="qos-enable" type="enablingState" minOccurs="0"/>
+				<xs:element name="generate-UDP-checksum" type="enablingState" minOccurs="0"/>
+				<xs:element name="max-bandwidth" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="ext-policy-svr" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="max-latency" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="max-jitter" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="max-packet-loss" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="observ-window-size" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="parent-realm" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="dns-realm" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="media-policy" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="in-translationid" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="out-translationid" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="in-manipulationid" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="out-manipulationid" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="class-profile" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="average-rate-limit" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="access-control-trust-level" type="levels" minOccurs="0"/>
+				<xs:element name="invalid-signal-threshold" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="maximum-signal-threshold" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="untrusted-signal-threshold" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="deny-period" type="xs:unsignedInt" minOccurs="0"/>
+				<xs:element name="symmetric-latching" type="enablingState" minOccurs="0"/>
+				<xs:element name="pai-strip" type="enablingState" minOccurs="0"/>
+				<xs:element name="trunk-context" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="early-media-allow" type="allows" nillable="true" minOccurs="0"/>
+				<xs:element name="enforcement-profile" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="additional-prefixes" type="minOneLength" nillable="true" minOccurs="0"/>
+				<xs:element name="restricted-latching" type="latchings" minOccurs="0"/>
+				<xs:element ref="restriction-mask" minOccurs="0"/>
+				<xs:element name="accounting-enable" type="enablingState" minOccurs="0"/>
+				<xs:element name="user-cac-mode" type="cac-mode" minOccurs="0"/>
+				<xs:element name="user-cac-bandwidth" type="numbers9" minOccurs="0"/>
+				<xs:element name="user-cac-sessions" type="numbers9" minOccurs="0"/>
+				<xs:element name="monthly-minutes" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="0"/>
+							<xs:maxInclusive value="71582788"/>
+							<xs:whiteSpace value="collapse"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="net-management-control" type="enablingState" minOccurs="0"/>
+				<xs:element name="delay-media-update" type="enablingState" minOccurs="0"/>
+				<xs:element name="codec-policy" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="codec-manip-in-realm" type="enablingState" minOccurs="0"/>
+				<xs:element name="constraint-name" type="xs:string" nillable="true" minOccurs="0"/>
+				<xs:element name="checkOnDb" type="xs:string"/>
+				<xs:element name="itemExistsOnDb" type="xs:boolean"/>
+				<xs:element ref="sdhanodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="realm"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tdelRealm1"/>
+				<xs:enumeration value="tdelRealmInterct1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationCode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tdelRealm1"/>
+				<xs:enumeration value="tdelRealmInterct1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="network-interfaces" nillable="true">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="value" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="restriction-mask" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0"/>
+				<xs:maxInclusive value="32"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="value">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

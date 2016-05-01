@@ -1,0 +1,23 @@
+
+MEMPOOL STATISTICS : dps_mbuf_pool
+--------------------------------------------------
+Mempool is full                                  : not full
+Number of entries in the mempool                 : 7820
+Number of free entries in the mempool ring       : 372
+--------------------------------------------------
+
+PORT STATISTICS : 0
+--------------------------------------------------
+Total number of successfully received packets    : 5904
+Total number of successfully transmitted packets : 15
+Total number of successfully received bytes      : 495326
+Total number of successfully transmitted bytes   : 960
+Total number of erroneous received packets       : 0
+Total number of failed transmitted packets       : 0
+Total RX mbuf allocation failures                : 0
+Total packets discared                           : 5803
+
+Link status                                      : UP
+Link speed                                       : 1000
+Link duples                                      : FULL DUPLEX
+--------------------------------------------------

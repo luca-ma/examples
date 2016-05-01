@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="notEmptyInteg">
+		<xs:restriction base="xs:integer">
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ipLength">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType" minOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0"/>
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType" minOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty"/>
+							<xs:element name="ipAddress" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="proxyPort">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1025"/>
+			<xs:maxInclusive value="65535"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tcpReccon">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="2"/>
+			<xs:maxInclusive value="300"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enum_zero">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="maxSeizures">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="maxSession">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="4294967295"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="maxAsr">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="homeProxy">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+			<xs:enumeration value="forced"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enabl">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="port">
+		<xs:simpleType>
+			<xs:union memberTypes="proxyPort enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="sessionAgent">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="sessionAgentId" type="notEmpty"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1" />
+				<xs:element ref="sd2" minOccurs="0"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="serviceOperationCode"/>
+				<xs:element name="inEffect" type="xs:boolean"/>
+				<xs:element name="activateConfig" type="xs:boolean"/>
+				<xs:element name="hostname" type="notEmpty"/>
+				<xs:element name="ip-address" type="ipLength"/>
+				<xs:element ref="port" />
+				<xs:element name="state" type="enabl" minOccurs="0"/>
+				<xs:element ref="app-protocol"/>
+				<xs:element ref="app-type" minOccurs="0"/>
+				<xs:element ref="transport-method" minOccurs="0"/>
+				<xs:element name="realm-id" type="notEmpty"/>
+				<xs:element name="description" type="xs:string" minOccurs="0"/>
+				<xs:element name="carriers" type="xs:string" minOccurs="0"/>
+				<xs:element name="allow-next-hop-lp" type="enabl" minOccurs="0"/>
+				<xs:element name="constraints" type="enabl" minOccurs="0"/>
+				<xs:element name="max-sessions" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-inbound-sessions" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-outbound-sessions" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-burst-rate" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-inbound-burst-rate" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-outbound-burst-rate" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-sustain-rate" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-inbound-sustain-rate" type="maxSession" minOccurs="0"/>
+				<xs:element name="max-outbound-sustain-rate" type="maxSession" minOccurs="0"/>
+				<xs:element name="min-seizures" type="maxSeizures" minOccurs="0"/>
+				<xs:element name="min-asr" type="maxAsr" minOccurs="0"/>
+				<xs:element name="time-to-resume" type="maxSeizures" minOccurs="0"/>
+				<xs:element name="ttr-no-response" type="maxSeizures" minOccurs="0"/>
+				<xs:element name="in-service-period" type="maxSeizures" minOccurs="0"/>
+				<xs:element name="burst-rate-window" type="maxSeizures" minOccurs="0"/>
+				<xs:element name="sustain-rate-window" type="maxSeizures" minOccurs="0"/>
+				<xs:element ref="req-uri-carrier-mode" minOccurs="0"/>
+				<xs:element ref="proxy-mode" minOccurs="0"/>
+				<xs:element ref="redirect-action" minOccurs="0"/>
+				<xs:element name="loose-routing" type="enabl" minOccurs="0"/>
+				<xs:element name="send-media-session" type="enabl" minOccurs="0"/>
+				<xs:element name="response-map" type="xs:string" minOccurs="0"/>
+				<xs:element name="ping-method" type="xs:string" minOccurs="0"/>
+				<xs:element name="ping-interval" type="xs:integer" minOccurs="0"/>
+				<xs:element name="ping-in-service-response-codes" type="xs:string" minOccurs="0"/>
+				<xs:element name="out-service-response-codes" type="xs:string" minOccurs="0"/>
+				<xs:element name="options" type="xs:string" minOccurs="0"/>
+				<xs:element name="media-profiles" type="xs:string" minOccurs="0"/>
+				<xs:element name="in-translationid" type="xs:string" minOccurs="0" nillable="true"/>
+				<xs:element name="out-translationid" type="xs:string" minOccurs="0" nillable="true"/>
+				<xs:element name="trust-me" type="enabl" minOccurs="0"/>
+				<xs:element name="request-uri-headers" type="xs:string" minOccurs="0"/>
+				<xs:element name="stop-recurse" type="xs:string" minOccurs="0"/>
+				<xs:element name="local-response-map" type="xs:string" minOccurs="0"/>
+				<xs:element name="ping-to-user-part" type="xs:string" minOccurs="0"/>
+				<xs:element name="ping-from-user-part" type="xs:string" minOccurs="0"/>
+				<xs:element name="li-trust-me" type="enabl" minOccurs="0"/>
+				<xs:element name="in-manipulationid" type="xs:string" minOccurs="0" nillable="true"/>
+				<xs:element name="out-manipulationid" type="xs:string" minOccurs="0" nillable="true"/>
+				<xs:element name="p-asserted-id" type="xs:string" minOccurs="0"/>
+				<xs:element name="trunk-group" type="xs:string" minOccurs="0"/>
+				<xs:element name="max-register-sustain-rate" type="maxSeizures" minOccurs="0"/>
+				<xs:element ref="early-media-allow" minOccurs="0"/>
+				<xs:element name="invalidate-registrations" type="enabl" minOccurs="0"/>
+				<xs:element ref="rfc2833-mode" minOccurs="0"/>
+				<xs:element name="rfc2833-payload" type="xs:integer" minOccurs="0"/>
+				<xs:element name="codec-policy" type="xs:string" minOccurs="0"/>
+				<xs:element name="enforcement-profile" type="xs:string" minOccurs="0"/>
+				<xs:element ref="reuse-connections" minOccurs="0"/>
+				<xs:element ref="tcp-keepalive" minOccurs="0"/>
+				<xs:element ref="tcp-reconn-interval" minOccurs="0"/>
+				<xs:element name="max-register-burst-rate" type="maxSeizures" minOccurs="0"/>
+				<xs:element name="register-burst-window" type="maxSeizures" minOccurs="0"/>
+				<xs:element name="checkOnDb" type="xs:string"/>
+				<xs:element name="itemExistsOnDb" type="xs:boolean"/>
+				<xs:element ref="sdhanodes"/>
+			</xs:all>
+		</xs:complexType>
+		<xs:keyref name="idNumKeyRef" refer="sdIdNumKey">
+			<xs:selector xpath="sd1/*"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
+		<xs:key name="sdIdNumKey">
+			<xs:selector xpath=".//SdType"/>
+			<xs:field xpath="id"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sessionAgent"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddSessionAgent1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationCode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddSessionAgent1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="tcp-reconn-interval">
+		<xs:simpleType>
+			<xs:union memberTypes="tcpReccon enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="req-uri-carrier-mode" >
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="None"/>
+				<xs:enumeration value="uri-param"/>
+				<xs:enumeration value="prefix"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="app-protocol" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="H323"/>
+				<xs:enumeration value="SIP"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="app-type" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="H323-GW"/>
+				<xs:enumeration value="H323-GK"/>
+				<xs:enumeration value=""/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="transport-method" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="UDP"/>
+				<xs:enumeration value="UDP+TCP"/>
+				<xs:enumeration value="DynamicTCP"/>
+				<xs:enumeration value="StaticTCP"/>
+				<xs:enumeration value="DynamicTLS"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="proxy-mode" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="proxy"/>
+				<xs:enumeration value="redirect"/>
+				<xs:enumeration value=""/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="redirect-action" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="proxy"/>
+				<xs:enumeration value="recurse"/>
+				<xs:enumeration value=""/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="early-media-allow" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="none"/>
+				<xs:enumeration value="reverse"/>
+				<xs:enumeration value="both"/>
+				<xs:enumeration value=""/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="rfc2833-mode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="none"/>
+				<xs:enumeration value="transparent"/>
+				<xs:enumeration value="preferred"/>
+				<xs:enumeration value="dual"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="reuse-connections" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="NONE"/>
+				<xs:enumeration value="tcp"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="tcp-keepalive" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="none"/>
+				<xs:enumeration value="enabled"/>
+				<xs:enumeration value="disabled"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

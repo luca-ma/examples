@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="lrtAssociation">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="lrtAssociationId"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1"/>
+				<xs:element ref="sd2"  minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="serviceOperationCode"  minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="inEffect"  minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="ccmeIpCurrent"/>
+				<xs:element ref="ccmeIpNew"/>
+				<xs:element ref="addE164s"  minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="removeE164s"  minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="SDHANode" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lrtAssociationId" type="notEmpty" nillable="false"/>
+	<xs:element name="SDHANode" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="lrtAssociation"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="templateName" type="xs:string" fixed="tmodLRTLAN1"/>
+	<xs:element name="idServiceCS" type="xs:string" fixed="CUSTOMSERVER"/>
+	<xs:element name="sd1" type="SdType"/>
+	<xs:element name="sd2" type="SdType"/>
+	<xs:element name="serviceOperationCode" type="xs:string"/>
+	<xs:element name="inEffect" type="xs:boolean" />
+	<xs:element name="ccmeIpCurrent" type="notEmpty"/>
+	<xs:element name="ccmeIpNew" type="notEmpty"/>
+	<xs:element name="addE164s">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="removeE164s">
+		<xs:complexType/>
+	</xs:element>
+	<xs:complexType name="SdType">
+		<xs:sequence>
+			<xs:element ref="SdType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SdType">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="id"/>
+				<xs:element ref="ipAddress"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="id" type="notEmpty"/>
+	<xs:element name="ipAddress" type="xs:string"/>
+</xs:schema>

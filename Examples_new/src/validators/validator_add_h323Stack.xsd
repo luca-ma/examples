@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="longString">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="notEmptyInt">
+		<xs:restriction base="xs:integer">
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enabl">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="maxSession">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="4294967295"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="proxyPort">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1025"/>
+			<xs:maxInclusive value="65535"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="proxyPort1">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="65535"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enum_zero">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="q931-start-port" nillable="false">
+		<xs:simpleType>
+			<xs:union memberTypes="proxyPort enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="q931-number-ports" nillable="false">
+		<xs:simpleType>
+			<xs:union memberTypes="proxyPort enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="dynamic-start-port" nillable="false">
+		<xs:simpleType>
+			<xs:union memberTypes="proxyPort enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="dynamic-number-ports" nillable="false">
+		<xs:simpleType>
+			<xs:union memberTypes="proxyPort enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ras-port" nillable="false">
+		<xs:simpleType>
+			<xs:union memberTypes="proxyPort enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="prefixes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="alternate-transport">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="media-profiles">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="h323Stack" nillable="false">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="h323StackId" type="notEmpty"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1"/>
+				<xs:element ref="sd2" minOccurs="0"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="serviceOperationcode"/>
+				<xs:element name="inEffect" type="xs:boolean"/>
+				<xs:element name="activateConfig" type="xs:boolean"/>
+				<xs:element name="name" type="xs:string" nillable="false"/>
+				<xs:element name="state" type="enabl"/>
+				<xs:element name="isgateway" type="enabl" minOccurs="0"/>
+				<xs:element name="realm-id" type="notEmpty" nillable="false"/>
+				<xs:element name="assoc-stack" type="xs:string" nillable="false" minOccurs="0"/>
+				<xs:element name="local-ip" type="notEmpty" nillable="false"/>
+				<xs:element name="max-calls" type="maxSession" nillable="false" minOccurs="0"/>
+				<xs:element name="max-channels" type="maxSession" nillable="false" minOccurs="0"/>
+				<xs:element name="registration-ttl" type="maxSession" nillable="false" minOccurs="0"/>
+				<xs:element name="terminal-alias" type="xs:string" nillable="false" minOccurs="0"/>
+				<xs:element ref="prefixes" minOccurs="0"/>
+				<xs:element ref="ras-port" minOccurs="0"/>
+				<xs:element name="auto-gk-discovery" type="enabl" nillable="false" minOccurs="0"/>
+				<xs:element name="multicast" type="xs:string" nillable="false" minOccurs="0"/>
+				<xs:element name="gatekeeper" type="xs:string" nillable="false" minOccurs="0"/>
+				<xs:element name="gk-identifier" type="longString" nillable="true" minOccurs="0"/>
+				<xs:element name="q931-port" type="proxyPort1" nillable="false" minOccurs="0"/>
+				<xs:element ref="alternate-transport" minOccurs="0"/>
+				<xs:element name="q931-max-calls" type="proxyPort1" nillable="false" minOccurs="0"/>
+				<xs:element name="h245-tunneling" type="enabl" nillable="false" minOccurs="0"/>
+				<xs:element name="fs-in-fs-msg" type="enabl" nillable="false" minOccurs="0"/>
+				<xs:element name="call-start-fast" type="enabl" nillable="false" minOccurs="0"/>
+				<xs:element name="call-start-slow" type="enabl" nillable="false" minOccurs="0"/>
+				<xs:element ref="media-profiles" minOccurs="0"/>
+				<xs:element name="process-registration" type="enabl" nillable="false" minOccurs="0"/>
+				<xs:element ref="allow-anonymous" minOccurs="0"/>
+				<xs:element name="options" type="xs:string" nillable="false" minOccurs="0"/>
+				<xs:element ref="proxy-mode" minOccurs="0"/>
+				<xs:element ref="h245-stage" minOccurs="0"/>
+				<xs:element ref="q931-start-port" minOccurs="0"/>
+				<xs:element ref="q931-number-ports" minOccurs="0"/>
+				<xs:element ref="dynamic-start-port" minOccurs="0"/>
+				<xs:element ref="dynamic-number-ports" minOccurs="0"/>
+				<xs:element ref="rfc2833-mode" minOccurs="0"/>
+				<xs:element name="filename" type="xs:string" nillable="false" minOccurs="0"/>
+				<xs:element name="tcp-keepalive" type="enabl" nillable="false" minOccurs="0"/>
+				<xs:element name="checkOnDb" type="xs:string"/>
+				<xs:element name="itemExistsOnDb" type="xs:boolean"/>
+				<xs:element ref="sdhanodes"/>
+			</xs:all>
+		</xs:complexType>
+		<xs:keyref name="idNumKeyRef" refer="sdIdNumKey">
+			<xs:selector xpath="sd1/*"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
+		<xs:key name="sdIdNumKey">
+			<xs:selector xpath=".//SdType"/>
+			<xs:field xpath="id"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty" nillable="false"/>
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0"/>
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="h323Stack"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddH323Stack1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationcode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddH323Stack1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="allow-anonymous" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="all"/>
+				<xs:enumeration value="agents-only"/>
+				<xs:enumeration value="realm-prefix"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="proxy-mode" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="H225"/>
+				<xs:enumeration value="H245"/>
+				<xs:enumeration value=""/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="h245-stage" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="setup"/>
+				<xs:enumeration value="proceding"/>
+				<xs:enumeration value="connect"/>
+				<xs:enumeration value="alerting"/>
+				<xs:enumeration value="early"/>
+				<xs:enumeration value="facility"/>
+				<xs:enumeration value="noh245"/>
+				<xs:enumeration value="dynamic"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="rfc2833-mode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="transparent"/>
+				<xs:enumeration value="preferred"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

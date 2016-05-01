@@ -1,0 +1,32 @@
+<html>
+<body>
+	<p id="descr">
+        La macchina tipo "Carolina" si scassa se accelleri troppo.<br>
+		Quando l'accelerazione è > MAX_SPEED si scassa e si resetta a zero.
+
+		In qualità di gino il Pilotino, fai tutto il necessario per mandarla oltre iil suo limte.
+        Qualsiasi cosa nel codice è ammessa ( salvo cambiare i sorgenti della Carolina ).
+        Qualsiasi trucco fuori dal codice no.
+	</p>
+	<p id="goal">
+        Riesci a farla andare oltre il suo limite ?
+        L'obiettivo è di avere scritto "Boost!" sulla console.
+	</p>
+	<p id="operate">Operate:
+	to compile<br>
+	<ol>
+		<li>maven<p>mvn clean compile</p></li>
+		<li>javac<p>mkdir -p target/classes<br>
+			javac -d target/classes -sourcepath src/main/java/ src/main/java/com/mondora/quiz/*.java 
+		</p>
+	</ol>
+<br>
+	to run<br>
+	<ol>
+		<li>maven<p>mvn clean compile exec:java</p></li>
+		<li>javac<p>java -Djava.security.manager -cp target/classes/ com.mondora.quiz.Pilotino</p>
+	</ol>
+	<br>
+</p>
+</body>
+</html>

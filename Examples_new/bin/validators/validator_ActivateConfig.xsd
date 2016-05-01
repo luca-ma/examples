@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:whiteSpace value="collapse" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SD">
+		<xs:sequence>
+			<xs:element name="SdType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="id" type="xs:string" />
+						<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="activateConfig">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="activateConfigId" type="notEmpty" />
+				<xs:element ref="idServiceCS" />
+				<xs:element name="sd1" type="SD" />
+				<xs:element name="sd2" type="SD" minOccurs="0" />
+				<xs:element ref="templateName" />
+				<xs:element ref="serviceOperationcode" />
+				<xs:element name="inEffect" type="xs:boolean" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tactivateConfig" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationcode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tactivateConfig" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

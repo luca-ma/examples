@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="proxyPort">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1025"/>
+			<xs:maxInclusive value="65535"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enum_zero">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="homeProxy">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+			<xs:enumeration value="forced"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enablingState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="urlParameter">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="home-proxy-port">
+		<xs:simpleType>
+			<xs:union memberTypes="proxyPort enum_zero"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty" nillable="false" />
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0" />
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sipNat">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="sipNatId" type="notEmpty"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1" />
+				<xs:element ref="sd2" minOccurs="0"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="serviceOperationcode"/>
+				<xs:element name="inEffect" type="xs:boolean"/>
+				<xs:element name="activateConfig" type="xs:boolean"/>
+				<xs:element name="realm-id" type="notEmpty"/>
+				<xs:element name="domain-suffix" type="notEmpty"/>
+				<xs:element name="ext-proxy-address" type="notEmpty"/>
+				<xs:element name="ext-address" type="notEmpty"/>
+				<xs:element name="home-address" type="notEmpty"/>
+				<xs:element name="home-proxy-address" type="notEmpty"/>
+				<xs:element ref="home-proxy-port"/>
+				<xs:element name="route-home-proxy" type="homeProxy"/>
+				<xs:element name="address-prefix" type="notEmpty"/>
+				<xs:element name="checkOnDb" type="xs:string"/>
+				<xs:element name="itemExistsOnDb" type="xs:boolean"/>
+				<xs:element ref="sdhanodes"/>
+			</xs:all>
+		</xs:complexType>
+		<xs:keyref name="idNumKeyRef" refer="sdIdNumKey">
+			<xs:selector xpath="sd1/*"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
+		<xs:key name="sdIdNumKey">
+			<xs:selector xpath=".//SdType"/>
+			<xs:field xpath="id"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sipNat"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tdelSipNat1"/>
+				<xs:enumeration value="tdelSipNatInterctRER1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationcode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tdelSipNat1"/>
+				<xs:enumeration value="tdelSipNatInterctRER1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

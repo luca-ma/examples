@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Gj.D-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:whiteSpace value="collapse" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="notKnownPort">
+		<xs:restriction base="xs:unsignedShort">
+			<xs:minInclusive value="1025" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enablingState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled" />
+			<xs:enumeration value="disabled" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="sip-ports">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sip-port" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="address" type="notEmpty" />
+							<xs:element name="port" type="notKnownPort" />
+							<xs:element name="transport-protocol" type="xs:string" minOccurs="0"/>
+							<xs:element name="tls-profile" type="xs:string" nillable="true" minOccurs="0" />
+							<xs:element name="allow-anonymous" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="all" />
+										<xs:enumeration value="agents-only" />
+										<xs:enumeration value="realm-prefix" />
+										<xs:enumeration value="registered" />
+										<xs:enumeration value="register-prefix" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty" nillable="false" />
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0" />
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sipIF">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="sipIFId" type="notEmpty" />
+				<xs:element ref="idServiceCS" />
+				<xs:element ref="sd1" />
+				<xs:element ref="sd2" minOccurs="0" />
+				<xs:element ref="templateName" />
+				<xs:element ref="serviceOperationcode" />
+				<xs:element name="inEffect" type="xs:boolean" />
+				<xs:element name="activateConfig" type="xs:boolean" />
+				<xs:element name="state" type="enablingState" />
+				<xs:element name="realm-id" type="xs:string" />
+				<xs:element ref="sip-ports" />
+				<xs:element name="checkOnDb" type="xs:string"/>
+				<xs:element name="itemExistsOnDb" type="xs:boolean"/>
+				<xs:element ref="sdhanodes" />
+			</xs:all>
+		</xs:complexType>
+		<xs:keyref name="idNumKeyRef" refer="sdIdNumKey">
+			<xs:selector xpath="sd1/*"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
+		<xs:key name="sdIdNumKey">
+			<xs:selector xpath=".//SdType"/>
+			<xs:field xpath="id"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sipIF"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tdelSipIF1" />
+				<xs:enumeration value="tdelSipIFInterct1" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationcode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="tdelSipIF1" />
+				<xs:enumeration value="tdelSipIFInterct1" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="value">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="notEmpty">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="numbers9">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="enablingState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled"/>
+			<xs:enumeration value="disabled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="priority">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="normal"/>
+			<xs:enumeration value="urgent"/>
+			<xs:enumeration value="non-urgent"/>
+			<xs:enumeration value="emergency"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="time">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="timeEnum">
+		<xs:restriction base="xs:dateTime">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="activate-time">
+		<xs:simpleType>
+			<xs:union memberTypes="time timeEnum" />
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="deactivate-time">
+		<xs:simpleType>
+			<xs:union memberTypes="time timeEnum" />
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="localPolicy" nillable="false">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="from-address"/>
+				<xs:element ref="to-address"/>
+				<xs:element ref="source-realm"/>
+				<xs:element ref="activate-time" minOccurs="0"/>
+				<xs:element ref="deactivate-time" minOccurs="0"/>
+				<xs:element name="state" type="enablingState" minOccurs="0"/>
+				<xs:element name="policy-priority" type="priority" minOccurs="0"/>
+				<xs:element name="localPolicyId" type="notEmpty"/>
+				<xs:element ref="idServiceCS"/>
+				<xs:element ref="sd1"/>
+				<xs:element ref="sd2" minOccurs="0"/>
+				<xs:element ref="templateName"/>
+				<xs:element ref="serviceOperationcode"/>
+				<xs:element name="inEffect" type="xs:boolean"/>
+				<xs:element name="activateConfig" type="xs:boolean"/>
+				<xs:element ref="policy-attributes"/>
+				<xs:element name="checkOnDb" type="xs:string"/>
+				<xs:element name="itemExistsOnDb" type="xs:boolean"/>
+				<xs:element ref="sdhanodes" />
+			</xs:all>
+		</xs:complexType>
+		<xs:keyref name="idNumKeyRef" refer="sdIdNumKey">
+			<xs:selector xpath="sd1/*"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
+		<xs:key name="sdIdNumKey">
+			<xs:selector xpath=".//SdType"/>
+			<xs:field xpath="id"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="from-address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="value"  maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="to-address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="value" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="source-realm">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="value" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="realm" type="notEmpty"/>
+	<xs:element name="sd1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="notEmpty" nillable="false"/>
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sd2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SdType">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="1"/>
+							<xs:element name="ipAddress" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idServiceCS" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CUSTOMSERVER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="policy-attributes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="policy-attribute" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="next-hop" type="notEmpty"/>
+							<xs:element ref="realm"/>
+							<xs:element name="action" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="none"/>
+										<xs:enumeration value="replace-uri"/>
+										<xs:enumeration value="redirect"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="carrier" type="xs:string" minOccurs="0"/>
+							<xs:element name="start-time" type="xs:string" minOccurs="0"/>
+							<xs:element name="end-time" type="xs:string" minOccurs="0"/>
+							<xs:element name="days-of-week" type="xs:string" minOccurs="0"/>
+							<xs:element name="cost" type="numbers9" minOccurs="0"/>
+							<xs:element name="state" type="enablingState" minOccurs="0"/>
+							<xs:element name="app-protocol" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="H323"/>
+										<xs:enumeration value="SIP"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="media-profiles" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="PCMU"/>
+										<xs:enumeration value="PCMA"/>
+										<xs:enumeration value="G722"/>
+										<xs:enumeration value="G723"/>
+										<xs:enumeration value="G726-32"/>
+										<xs:enumeration value="G728"/>
+										<xs:enumeration value="G729"/>
+										<xs:enumeration value="H261"/>
+										<xs:enumeration value="H263"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="terminate-recursion" type="enablingState" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sdhanodes" type="xs:anyType"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="localPolicy"/>
+				<xs:element name="idOrder" type="xs:int" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="commands" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ref" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="templateName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddLocalPolicy1"/>
+				<xs:enumeration value="taddLocalPolicyInterctRER1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceOperationcode" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="taddLocalPolicy1"/>
+				<xs:enumeration value="taddLocalPolicyInterctRER1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="value">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>
